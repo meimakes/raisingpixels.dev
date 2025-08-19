@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Lost Pixel | RaisingPixels.dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #fdf6ff;
+            --bg-secondary: #fff;
+            --text-primary: #2d1b69;
+            --text-secondary: #6b5b95;
+            --accent-1: #ffb3d9;
+            --accent-2: #b3e5ff;
+            --accent-3: #ffd9b3;
+            --accent-4: #d9b3ff;
+            --accent-5: #b3ffb3;
+            --accent-6: #ffb3b3;
+            --shadow-color: #2d1b69;
+            --border: #2d1b69;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #1a1a1f;
+                --bg-secondary: #25252b;
+                --text-primary: #f0e6f6;
+                --text-secondary: #a8a3b3;
+                --accent-1: #e091b3;
+                --accent-2: #7da9cc;
+                --accent-3: #d4a574;
+                --accent-4: #9d7fc7;
+                --accent-5: #86b386;
+                --accent-6: #d08585;
+                --shadow-color: #000;
+                --border: #4a4a5e;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pixel-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .pixel {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-2);
+            opacity: 0.3;
+            animation: pixelFloat linear infinite;
+        }
+
+        @keyframes pixelFloat {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            to {
+                transform: translateY(-10px) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        .container-404 {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        .error-code {
+            font-family: 'Fredoka', cursive;
+            font-size: 8rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .four {
+            color: var(--accent-1);
+            display: inline-block;
+            animation: glitch 2s infinite;
+        }
+
+        .zero {
+            color: var(--accent-2);
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .four-2 {
+            color: var(--accent-4);
+            display: inline-block;
+            animation: glitch 2s infinite reverse;
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) scale(1.1);
+            }
+        }
+
+        .lost-pixel {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-3);
+            border: 4px solid var(--border);
+            border-radius: 8px;
+            margin: 2rem auto;
+            position: relative;
+            box-shadow: 6px 6px 0 var(--shadow-color);
+            animation: lostPixelFloat 3s ease-in-out infinite;
+        }
+
+        .lost-pixel::before,
+        .lost-pixel::after {
+            content: '?';
+            position: absolute;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .lost-pixel::before {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .lost-pixel::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                var(--accent-5) 10px,
+                var(--accent-5) 12px
+            );
+            opacity: 0.2;
+            border-radius: 4px;
+        }
+
+        @keyframes lostPixelFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+            75% {
+                transform: translateY(10px) rotate(-5deg);
+            }
+        }
+
+        .error-title {
+            font-family: 'Fredoka', cursive;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--text-primary);
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .error-suggestions {
+            background: var(--bg-secondary);
+            border: 3px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 5px 5px 0 var(--shadow-color);
+            text-align: left;
+        }
+
+        .suggestion-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .suggestion-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .suggestion-list li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+        }
+
+        .suggestion-list li::before {
+            content: '→';
+            color: var(--accent-4);
+            font-weight: bold;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: 3px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: inline-block;
+            box-shadow: 4px 4px 0 var(--shadow-color);
+        }
+
+        .btn-primary {
+            background: var(--accent-2);
+            color: var(--bg-primary);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--shadow-color);
+        }
+
+        .mini-game {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border: 3px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 5px 5px 0 var(--shadow-color);
+        }
+
+        .game-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .pixel-hunt {
+            display: grid;
+            grid-template-columns: repeat(5, 50px);
+            gap: 0.5rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .hunt-pixel {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-1);
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            opacity: 0.3;
+            box-shadow: 2px 2px 0 var(--shadow-color);
+        }
+
+        .hunt-pixel:hover {
+            opacity: 0.6;
+            transform: scale(1.1);
+        }
+
+        .hunt-pixel.found {
+            background: var(--accent-5);
+            opacity: 1;
+            animation: pixelPop 0.5s ease;
+        }
+
+        @keyframes pixelPop {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .game-message {
+            color: var(--accent-4);
+            font-weight: 600;
+            margin-top: 1rem;
+            min-height: 1.5rem;
+        }
+
+        .floating-emoji {
+            position: fixed;
+            font-size: 2rem;
+            animation: floatAround 20s infinite linear;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes floatAround {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+            }
+            25% {
+                transform: translate(30vw, 75vh) rotate(90deg);
+            }
+            50% {
+                transform: translate(-20vw, 50vh) rotate(180deg);
+            }
+            75% {
+                transform: translate(40vw, 25vh) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, -10vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pixel-background" id="pixelBackground"></div>
+    
+    <div class="floating-emoji" style="left: 10%; animation-delay: 0s;">🤖</div>
+    <div class="floating-emoji" style="left: 80%; animation-delay: 5s;">🎮</div>
+    <div class="floating-emoji" style="left: 50%; animation-delay: 10s;">💻</div>
+    <div class="floating-emoji" style="left: 30%; animation-delay: 15s;">🚀</div>
+
+    <div class="container-404">
+        <div class="error-code">
+            <span class="four">4</span><span class="zero">0</span><span class="four-2">4</span>
+        </div>
+        
+        <div class="lost-pixel"></div>
+        
+        <h1 class="error-title">Oops! Lost Pixel Alert!</h1>
+        
+        <p class="error-message">
+            Looks like this pixel wandered off the grid! The page you're looking for might be debugging itself or learning a new programming language.
+        </p>
+
+        <div class="mini-game">
+            <div class="game-title">🎮 Quick Game: Find the Hidden Pixel!</div>
+            <div class="pixel-hunt" id="pixelHunt">
+                <!-- Pixels will be generated here -->
+            </div>
+            <div class="game-message" id="gameMessage">Click the pixels to find the special one!</div>
+        </div>
+
+        <div class="error-suggestions">
+            <div class="suggestion-title">While you're here, why not try:</div>
+            <ul class="suggestion-list">
+                <li>Check if you typed the URL correctly (even robots make typos!)</li>
+                <li>Go back to the homepage and explore our resources</li>
+                <li>Use the search feature to find what you're looking for</li>
+                <li>Play with the pixel hunt game above!</li>
+            </ul>
+        </div>
+
+        <div class="button-group">
+            <a href="/" class="btn btn-primary">🏠 Back to Home</a>
+            <button onclick="history.back()" class="btn btn-secondary">← Go Back</button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating pixels in background
+        function createPixel() {
+            const pixel = document.createElement('div');
+            pixel.className = 'pixel';
+            pixel.style.left = Math.random() * 100 + '%';
+            pixel.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            pixel.style.animationDelay = Math.random() * 10 + 's';
+            
+            const size = Math.random() * 3 + 2;
+            pixel.style.width = size + 'px';
+            pixel.style.height = size + 'px';
+            
+            const colors = ['var(--accent-1)', 'var(--accent-2)', 'var(--accent-3)', 'var(--accent-4)', 'var(--accent-5)', 'var(--accent-6)'];
+            pixel.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            document.getElementById('pixelBackground').appendChild(pixel);
+            setTimeout(() => pixel.remove(), 25000);
+        }
+
+        // Create initial pixels
+        for(let i = 0; i < 15; i++) {
+            setTimeout(() => createPixel(), i * 1000);
+        }
+        setInterval(createPixel, 2000);
+
+        // Mini game logic
+        const pixelHunt = document.getElementById('pixelHunt');
+        const gameMessage = document.getElementById('gameMessage');
+        let hiddenPixelIndex;
+        let foundCount = 0;
+
+        function initGame() {
+            pixelHunt.innerHTML = '';
+            foundCount = 0;
+            hiddenPixelIndex = Math.floor(Math.random() * 25);
+            
+            for(let i = 0; i < 25; i++) {
+                const pixel = document.createElement('div');
+                pixel.className = 'hunt-pixel';
+                pixel.dataset.index = i;
+                
+                pixel.addEventListener('click', function() {
+                    if(this.classList.contains('found')) return;
+                    
+                    if(parseInt(this.dataset.index) === hiddenPixelIndex) {
+                        this.classList.add('found');
+                        this.style.background = 'var(--accent-5)';
+                        gameMessage.textContent = '🎉 You found it! Great job! Click to play again!';
+                        setTimeout(() => {
+                            gameMessage.textContent = 'Starting new game...';
+                            setTimeout(initGame, 1000);
+                        }, 2000);
+                    } else {
+                        this.style.opacity = '0.1';
+                        foundCount++;
+                        if(foundCount < 24) {
+                            const messages = [
+                                'Not that one! Keep searching!',
+                                'Nope! Try another pixel!',
+                                'Almost! Keep clicking!',
+                                'You\'re getting warmer!',
+                                'The pixel is hiding well!'
+                            ];
+                            gameMessage.textContent = messages[Math.floor(Math.random() * messages.length)];
+                        }
+                    }
+                });
+                
+                pixelHunt.appendChild(pixel);
+            }
+        }
+
+        // Initialize the game
+        initGame();
+
+        // Add some fun console messages
+        console.log('%c🎮 Hey developer! Lost in the code?', 'font-size: 20px; color: #d9b3ff;');
+        console.log('%c404: Fun not found? Just kidding! 😄', 'font-size: 16px; color: #ffb3d9;');
+        console.log('%cVisit https://raisingpixels.dev for awesome resources!', 'font-size: 14px; color: #b3e5ff;');
+    </script>
+</body>
+</html>

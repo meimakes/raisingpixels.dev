@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RaisingPixels.dev - Resources for Raising Digital Natives</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #fffaf6;
+            --bg-secondary: #fff;
+            --text-primary: #2d1b69;
+            --text-secondary: #6b5b95;
+            --accent-1: #ffb3d9;
+            --accent-2: #b3e5ff;
+            --accent-3: #ffd9b3;
+            --accent-4: #ffdcb3;
+            --accent-5: #b3ffb3;
+            --accent-6: #ffb3b3;
+            --shadow-color: #2d1b69;
+            --border: #2d1b69;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #1a1a1f;
+                --bg-secondary: #25252b;
+                --text-primary: #f0e6f6;
+                --text-secondary: #a8a3b3;
+                --accent-1: #e091b3;
+                --accent-2: #7da9cc;
+                --accent-3: #d4a574;
+                --accent-4: #9d7fc7;
+                --accent-5: #86b386;
+                --accent-6: #d08585;
+                --shadow-color: #000;
+                --border: #4a4a5e;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .pixel-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .pixel {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-2);
+            opacity: 0.3;
+            animation: pixelFloat linear infinite;
+        }
+
+        @keyframes pixelFloat {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            to {
+                transform: translateY(-10px) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            min-height: 20vh;
+        }
+
+        .logo {
+            font-family: 'Fredoka', cursive;
+            font-size: 3rem;
+            font-weight: 600;
+            margin: 2rem auto;
+            display: inline-block;
+            position: relative;
+        }
+
+        .logo-main {
+            color: var(--text-primary);
+        }
+
+        .logo-pixels {
+            color: var(--accent-6);
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .logo-sparkle {
+            display: inline-block;
+            color: var(--accent-3);
+            font-size: 2rem;
+            margin-left: 0.5rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            50% { 
+                transform: scale(1.2) rotate(10deg);
+                opacity: 0.8;
+            }
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            display: block;
+            padding: 0.3rem 1rem;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+        }
+
+        .search-container {
+            margin: 3rem 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem 3.5rem 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0 var(--shadow-color);
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--accent-2);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--shadow-color);
+        }
+
+        .clear-search {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0.5rem 0.8rem;
+            background: var(--accent-6);
+            color: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            box-shadow: 2px 2px 0 var(--shadow-color);
+            font-size: 0.9rem;
+        }
+
+        .clear-search:hover {
+            transform: translateY(-50%) translate(-1px, -1px);
+            box-shadow: 3px 3px 0 var(--shadow-color);
+        }
+
+        .clear-search.hidden {
+            display: none;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.2rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+            box-shadow: 3px 3px 0 var(--shadow-color);
+        }
+
+        .filter-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--shadow-color);
+        }
+
+        .filter-btn.active {
+            background: var(--accent-3);
+            color: var(--text-primary);
+            border-color: var(--border);
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0 var(--shadow-color);
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .resource-card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 5px 5px 0 var(--shadow-color);
+            transition: all 0.2s ease;
+            animation: slideIn 0.5s ease forwards;
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .resource-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0 var(--shadow-color);
+        }
+
+        .resource-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .resource-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            box-shadow: 3px 3px 0 var(--shadow-color);
+        }
+
+        .resource-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .resource-category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            border: 2px solid var(--border);
+            font-size: 0.85rem;
+            margin: 0.5rem 0;
+            font-weight: 500;
+            box-shadow: 2px 2px 0 var(--shadow-color);
+        }
+
+        .resource-description {
+            color: var(--text-secondary);
+            margin: 1rem 0;
+            line-height: 1.5;
+        }
+
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .age-range {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .resource-link {
+            padding: 0.5rem 1rem;
+            background: var(--accent-4);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-block;
+            box-shadow: 3px 3px 0 var(--shadow-color);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .resource-link {
+                background: var(--accent-4);
+                color: var(--bg-secondary);
+            }
+        }
+
+        .resource-link:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 var(--shadow-color);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-secondary);
+            margin-top: 4rem;
+            font-size: 0.8rem;
+        }
+
+        .emoji-float {
+            position: fixed;
+            font-size: 2rem;
+            animation: floatUp 10s linear infinite;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(110vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pixel-background" id="pixelBackground"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-main">raising</span><span class="logo-pixels">pixels</span><span class="logo-sparkle">✨</span>
+            </div>
+            <div class="tagline">Family-friendly resources for raising your digital natives.</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="search-container">
+            <div class="search-wrapper">
+                <input type="text" class="search-box" placeholder="Search for coding platforms, STEM toys, apps..." id="searchInput">
+                <button class="clear-search hidden" id="clearSearch">Clear</button>
+            </div>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All Resources</button>
+            <button class="filter-btn" data-filter="coding">Coding Platforms</button>
+            <button class="filter-btn" data-filter="toys">STEM Toys</button>
+            <button class="filter-btn" data-filter="apps">Apps & Games</button>
+            <button class="filter-btn" data-filter="hardware">Hardware & Kits</button>
+            <button class="filter-btn" data-filter="books">Books & Media</button>
+        </div>
+
+        <div class="resources-grid" id="resourcesGrid">
+            <!-- Resources will be populated here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>Made with 💜 for parents raising the next generation of creators</p>
+    </footer>
+
+    <script>
+        const resources = [
+            {
+                title: "Scratch",
+                category: "coding",
+                icon: "🐱",
+                color: "#ffb3d9",
+                description: "MIT's visual programming language perfect for beginners. Kids can create interactive stories, games, and animations.",
+                ageRange: "8-16 years",
+                link: "https://scratch.mit.edu"
+            },
+            {
+                title: "Code.org",
+                category: "coding",
+                icon: "📚",
+                color: "#b3e5ff",
+                description: "Free coding courses and activities for all ages, including Hour of Code tutorials featuring popular characters.",
+                ageRange: "4-18 years",
+                link: "https://code.org"
+            },
+            {
+                title: "Snap Circuits",
+                category: "toys",
+                icon: "⚡",
+                color: "#ffd9b3",
+                description: "Award-winning snap-together electronic components that teach circuit building without soldering or tools.",
+                ageRange: "8+ years",
+                link: "https://www.elenco.com/snap-circuits"
+            },
+            {
+                title: "LEGO Mindstorms",
+                category: "toys",
+                icon: "🤖",
+                color: "#d9b3ff",
+                description: "Build and program intelligent robots using LEGO bricks, motors, and sensors with intuitive drag-and-drop coding.",
+                ageRange: "10+ years",
+                link: "https://www.lego.com/mindstorms"
+            },
+            {
+                title: "Swift Playgrounds",
+                category: "apps",
+                icon: "🎮",
+                color: "#b3ffb3",
+                description: "Apple's fun way to learn Swift programming through interactive puzzles and challenges on iPad and Mac.",
+                ageRange: "10+ years",
+                link: "https://www.apple.com/swift/playgrounds"
+            },
+            {
+                title: "Raspberry Pi",
+                category: "hardware",
+                icon: "🥧",
+                color: "#ffb3b3",
+                description: "Affordable single-board computer perfect for learning programming, electronics, and building creative projects.",
+                ageRange: "8+ years",
+                link: "https://www.raspberrypi.org"
+            },
+            {
+                title: "Tynker",
+                category: "coding",
+                icon: "🚀",
+                color: "#ffb3d9",
+                description: "Creative coding platform with self-paced courses, including Minecraft modding and drone programming.",
+                ageRange: "5-18 years",
+                link: "https://www.tynker.com"
+            },
+            {
+                title: "Sphero",
+                category: "toys",
+                icon: "⚪",
+                color: "#b3e5ff",
+                description: "Programmable robots and STEAM activities that make learning feel like play through hands-on activities.",
+                ageRange: "4+ years",
+                link: "https://sphero.com"
+            },
+            {
+                title: "Khan Academy",
+                category: "coding",
+                icon: "🎓",
+                color: "#ffd9b3",
+                description: "Free programming courses in JavaScript, HTML/CSS, and SQL with interactive challenges and projects.",
+                ageRange: "10+ years",
+                link: "https://www.khanacademy.org/computing"
+            },
+            {
+                title: "micro:bit",
+                category: "hardware",
+                icon: "💻",
+                color: "#d9b3ff",
+                description: "Pocket-sized programmable computer with LED display, buttons, and sensors for creative computing projects.",
+                ageRange: "8+ years",
+                link: "https://microbit.org"
+            },
+            {
+                title: "Osmo",
+                category: "toys",
+                icon: "✨",
+                color: "#b3ffb3",
+                description: "Award-winning educational games that blend physical play with digital learning using reflective AI technology.",
+                ageRange: "3-10 years",
+                link: "https://www.playosmo.com"
+            },
+            {
+                title: "Minecraft Education",
+                category: "apps",
+                icon: "⛏️",
+                color: "#ffb3b3",
+                description: "Game-based learning platform that promotes creativity, collaboration, and problem-solving in immersive worlds.",
+                ageRange: "7+ years",
+                link: "https://education.minecraft.net"
+            },
+            {
+                title: "Arduino Starter Kit",
+                category: "hardware",
+                icon: "🔧",
+                color: "#ffb3d9",
+                description: "Open-source electronics platform with projects that teach electronics and programming fundamentals.",
+                ageRange: "12+ years",
+                link: "https://www.arduino.cc"
+            },
+            {
+                title: "Hello Ruby",
+                category: "books",
+                icon: "📖",
+                color: "#b3e5ff",
+                description: "Children's book series that introduces programming concepts through storytelling and unplugged activities.",
+                ageRange: "5-8 years",
+                link: "https://www.helloruby.com"
+            },
+            {
+                title: "littleBits",
+                category: "toys",
+                icon: "🔌",
+                color: "#ffd9b3",
+                description: "Electronic building blocks that snap together with magnets for creating inventions and learning STEAM concepts.",
+                ageRange: "8+ years",
+                link: "https://littlebits.com"
+            },
+            {
+                title: "CS Unplugged",
+                category: "books",
+                icon: "🎯",
+                color: "#d9b3ff",
+                description: "Free teaching materials for computer science concepts without using a computer - perfect for younger kids.",
+                ageRange: "5-14 years",
+                link: "https://csunplugged.org"
+            }
+        ];
+
+        function createResourceCard(resource) {
+            return `
+                <div class="resource-card" data-category="${resource.category}">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: ${resource.color};"></div>
+                    <div class="resource-header">
+                        <div class="resource-icon" style="background: ${resource.color}20; color: ${resource.color}; border-color: ${resource.color}">
+                            ${resource.icon}
+                        </div>
+                        <div>
+                            <div class="resource-title">${resource.title}</div>
+                        </div>
+                    </div>
+                    <span class="resource-category" style="background: ${resource.color}30; color: var(--text-primary); border-color: ${resource.color}">
+                        ${resource.category.charAt(0).toUpperCase() + resource.category.slice(1)}
+                    </span>
+                    <p class="resource-description">${resource.description}</p>
+                    <div class="resource-meta">
+                        <span class="age-range">Ages: ${resource.ageRange}</span>
+                        <a href="${resource.link}" target="_blank" class="resource-link">Explore →</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderResources(filter = 'all', searchTerm = '') {
+            const grid = document.getElementById('resourcesGrid');
+            const filteredResources = resources.filter(resource => {
+                const matchesFilter = filter === 'all' || resource.category === filter;
+                const matchesSearch = searchTerm === '' || 
+                    resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    resource.description.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            grid.innerHTML = filteredResources.map(resource => createResourceCard(resource)).join('');
+            
+            // Stagger animation
+            const cards = grid.querySelectorAll('.resource-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const searchTerm = document.getElementById('searchInput').value;
+                renderResources(btn.dataset.filter, searchTerm);
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const clearButton = document.getElementById('clearSearch');
+
+        searchInput.addEventListener('input', (e) => {
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            renderResources(activeFilter, e.target.value);
+            
+            // Show/hide clear button
+            if (e.target.value.length > 0) {
+                clearButton.classList.remove('hidden');
+            } else {
+                clearButton.classList.add('hidden');
+            }
+        });
+
+        // Clear search functionality
+        clearButton.addEventListener('click', () => {
+            searchInput.value = '';
+            clearButton.classList.add('hidden');
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            renderResources(activeFilter, '');
+            searchInput.focus();
+        });
+
+        // Create floating pixels in background
+        function createPixel() {
+            const pixel = document.createElement('div');
+            pixel.className = 'pixel';
+            
+            // Random horizontal position
+            pixel.style.left = Math.random() * 100 + '%';
+            
+            // Random animation duration (slower for more subtle effect)
+            pixel.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            
+            // Random delay
+            pixel.style.animationDelay = Math.random() * 10 + 's';
+            
+            // Random size variation
+            const size = Math.random() * 3 + 2;
+            pixel.style.width = size + 'px';
+            pixel.style.height = size + 'px';
+            
+            // Random color from accent colors
+            const colors = ['var(--accent-1)', 'var(--accent-2)', 'var(--accent-3)', 'var(--accent-4)', 'var(--accent-5)', 'var(--accent-6)'];
+            pixel.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            document.getElementById('pixelBackground').appendChild(pixel);
+            
+            // Remove pixel after animation completes
+            setTimeout(() => pixel.remove(), 25000);
+        }
+
+        // Create initial pixels
+        for(let i = 0; i < 15; i++) {
+            setTimeout(() => createPixel(), i * 1000);
+        }
+
+        // Continue creating pixels periodically
+        setInterval(createPixel, 2000);
+
+        // Create floating emojis
+        function createFloatingEmoji() {
+            const emojis = ['💻', '🎮', '🤖', '🚀', '⭐', '💡', '🎨', '📚'];
+            const emoji = document.createElement('div');
+            emoji.className = 'emoji-float';
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + '%';
+            emoji.style.animationDuration = (Math.random() * 5 + 10) + 's';
+            emoji.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(emoji);
+            
+            setTimeout(() => emoji.remove(), 15000);
+        }
+
+        // Create floating emojis periodically
+        setInterval(createFloatingEmoji, 8000);
+        createFloatingEmoji(); // Create first one immediately
+
+        // Initial render
+        renderResources();
+    </script>
+</body>
+</html>
