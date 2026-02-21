@@ -2,6 +2,9 @@
 
 A curated collection of coding platforms, STEM toys, educational apps, and hardware kits to help parents introduce their children to technology and programming in fun, engaging ways.
 
+Built by [@meimakes](https://x.com/meimakes)
+
+
 ## ✨ Features
 
 - **🔍 Live Search** - Instantly filter resources as you type
